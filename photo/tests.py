@@ -59,3 +59,13 @@ class CategoryViewTest(unittest.TestCase):
         self.assertEqual(len(categories), 2)
         self.assertEqual(categories[0].name, 'cool')
         self.assertEqual(categories[1].name, 'super_hero')
+
+    def test_pictures_when_render(self):
+        client = Client()
+        response = client.get("/")
+        pictures = response.context['categories'][1].pictures
+
+        self.assertEqual(len(pictures), 3)
+        self.assertEqual(pictures[0].name, 'a.jpg')
+        self.assertEqual(pictures[1].name, 'b.jpg')
+        self.assertEqual(pictures[2].name, 'c.jpg')
