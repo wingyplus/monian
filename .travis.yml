@@ -4,5 +4,5 @@ python:
 install: pip install -q django
 script:
     - export DJANGO_DEV=true
-    - python manage.py test photo
+    - python manage.py test -v 2 photo
 
