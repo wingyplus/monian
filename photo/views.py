@@ -1,6 +1,8 @@
 # Create your views here.
 from django.shortcuts import render
+from photo.models import Category
 
 
 def index(req):
-    return render(req, "category/index.html")
+    categories = Category.list()
+    return render(req, "category/index.html", {"categories": categories})

@@ -44,9 +44,18 @@ class CategoryTest(unittest.TestCase):
 
 class CategoryViewTest(unittest.TestCase):
 
-    def test_get_all_categories(self):
+    def test_render_template(self):
         client = Client()
         response = client.get("/")
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.templates[0].name, "category/index.html")
+
+    def test_categories_when_render(self):
+        client = Client()
+        response = client.get("/")
+        categories = response.context['categories']
+
+        self.assertEqual(len(categories), 2)
+        self.assertEqual(categories[0].name, 'cool')
+        self.assertEqual(categories[1].name, 'super_hero')
