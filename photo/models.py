@@ -19,12 +19,14 @@ class Category(object):
     @staticmethod
     def list():
         str_categories = os.listdir(STATICFILES_DIRS[0])
+        str_categories.sort()
         categories = [Category(name) for name in str_categories]
         return categories
 
     @property
     def pictures(self):
         pics = os.listdir(os.path.join(STATICFILES_DIRS[0] + '/' + self.name))
+        pics.sort()
         return [Picture(name) for name in pics]
 
 
