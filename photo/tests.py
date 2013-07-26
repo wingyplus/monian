@@ -5,7 +5,8 @@ when you run "manage.py test".
 Replace this with more appropriate tests for your application.
 """
 
-#from django.test import TestCase
+from django.test import TestCase
+from django.test.client import Client
 import unittest
 from photo.models import Category, Picture
 
@@ -39,3 +40,11 @@ class CategoryTest(unittest.TestCase):
         self.assertEqual(pics[1].name, 'b.jpg')
         self.assertIsInstance(pics[2], Picture)
         self.assertEqual(pics[2].name, 'c.jpg')
+
+
+class CategoryViewTest(TestCase):
+
+    def test_get_all_categories(self):
+        client = Client()
+        client.get("/
+
