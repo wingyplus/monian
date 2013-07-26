@@ -13,7 +13,22 @@ else:
 
 class Category(object):
 
-    def list(self):
-        print STATICFILES_DIRS
-        self.categories = os.listdir(STATICFILES_DIRS[0])
-        return self.categories
+    def __init__(self, name):
+        self.name = name
+
+    @staticmethod
+    def list():
+        str_categories = os.listdir(STATICFILES_DIRS[0])
+        categories = [Category(name) for name in str_categories]
+        return categories
+
+    @property
+    def pictures(self):
+        pics = os.listdir(os.path.join(STATICFILES_DIRS[0] + '/' + self.name))
+        return [Picture(name) for name in pics]
+
+
+class Picture(object):
+
+    def __init__(self, name):
+        self.name = name
