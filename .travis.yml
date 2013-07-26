@@ -2,4 +2,7 @@ language: python
 python:
     - "2.7"
 install: pip install -q django
-script: python manage.py test photo
+script:
+    - export DJANGO_DEV=true
+    - python manage.py test photo
+
